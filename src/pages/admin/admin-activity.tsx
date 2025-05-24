@@ -107,7 +107,7 @@ export default function TableActivity() {
     }
   }, [createStatus]);
 
-  const hasActivities = activityData?.data && activityData.data.length > 0;
+
   const totalPages = activityData?.pagination?.total_page || 1;
 
   // Handler functions

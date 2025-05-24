@@ -105,7 +105,7 @@ export default function TableUser() {
     }
   }, [deleteResponse, refetch]);
 
-  const hasUsers = userData?.data && userData.data.length > 0;
+
   const totalPages = userData?.pagination?.total_page || 1;
 
   const handleViewUser = (user: User, e?: React.MouseEvent) => {

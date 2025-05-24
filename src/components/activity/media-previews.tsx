@@ -1,6 +1,6 @@
 // components/MediaPreview.tsx
 import type { Activity } from "@/types/activity";
-import { Image, Play, Video } from "lucide-react";
+import { Image, Play } from "lucide-react";
 
 
 interface MediaPreviewProps {

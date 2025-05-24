@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import useUpdateActivity from "@/api/orphanage-activity/update-activity";
 import useDeleteActivity from "@/api/orphanage-activity/delete-activity";
 import { useCreateActivity } from "@/api/orphanage-activity/create-activity";
-import type { Activity, ActivityFormData } from "@/types/activity";
+import type {  ActivityFormData } from "@/types/activity";
 
 export const useActivityOperations = (refetch: () => void) => {
   // State for operations status

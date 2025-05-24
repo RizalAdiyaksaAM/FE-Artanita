@@ -1,5 +1,4 @@
 // components/user/search-header-user.tsx
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -9,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, Plus, Filter, X } from "lucide-react";
+import { Search, Plus, X } from "lucide-react";
 
 interface SearchHeaderUserProps {
   searchInput: string;
