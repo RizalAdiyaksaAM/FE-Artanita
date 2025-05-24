@@ -57,6 +57,15 @@ const { donations: donationData, isLoading: isDonationLoading, error: donationEr
     );
   }
 
+  if (donationError) {
+    return (
+      <div className="container py-20 text-center">
+        <h2 className="text-2xl font-bold text-red-500 mb-4">Error</h2>
+        <p>{donationError.message}</p>
+      </div>
+    );
+  }
+
   if (programError || !programData || programData.status !== "success") {
     return (
       <div className="container py-20 text-center">

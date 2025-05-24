@@ -101,7 +101,7 @@ export default function TableProgram() {
   }, [isEditModalOpen, updateStatus]);
   
   useEffect(() => {
-    if (deleteResponse?.status === "success") {
+    if (deleteResponse?.status && deleteStatus === "success") {
       setDeleteStatus('success');
       setIsDeleteDialogOpen(false);
       

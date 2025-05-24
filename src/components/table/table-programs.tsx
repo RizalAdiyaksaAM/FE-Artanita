@@ -60,7 +60,10 @@ export const ProgramTable: React.FC<ProgramTableProps> = ({
           <TableRow 
             key={program.id} 
             className="cursor-pointer hover:bg-gray-50"
-            onClick={(e) => onView(program)}
+            onClick={(e) =>  {
+                    e.stopPropagation();
+                    onView(program);
+                  }}
           >
             <TableCell className="font-medium">{program.number}</TableCell>
             <TableCell>{program.title}</TableCell>

@@ -1,5 +1,5 @@
 // components/program-donation/SearchAndControls.tsx
-import React, { useRef } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search,  Plus } from "lucide-react";
@@ -12,7 +12,7 @@ export const SearchAndControls: React.FC<SearchAndControlsProps> = ({
   onClearSearch,
   onCreateNew
 }) => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  // const fileInputRef = useRef<HTMLInputElement>(null);
 
   // const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   const file = e.target.files?.[0];

@@ -1,4 +1,4 @@
-import donations, { getDonationStatus, getProgramDetail, type DonationResponse, type DonationsCollectionPayload, type ProgramDetail } from "@/api/donation/donasi";
+import donations, {  getProgramDetail, type DonationResponse, type DonationsCollectionPayload, type ProgramDetail } from "@/api/donation/donasi";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 
@@ -265,24 +265,24 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
     }
   };
 
-  const checkDonationStatus = async () => {
-    if (!paymentData?.id) return;
+  // const checkDonationStatus = async () => {
+  //   if (!paymentData?.id) return;
 
-    try {
-      const response = await getDonationStatus(paymentData.id);
-      if (response && response.data) {
-        const status = response.data.status;
-        if (status === 'paid' || status === 'settlement') {
-          showToast("Pembayaran berhasil! Terima kasih atas donasi Anda.");
-          navigate("/donation/thank-you");
-        } else if (status === 'failed' || status === 'expired') {
-          showToast("Pembayaran gagal atau kadaluarsa. Silakan coba lagi.", 'error');
-        }
-      }
-    } catch (error) {
-      console.error("Error checking donation status:", error);
-    }
-  };
+  //   try {
+  //     const response = await getDonationStatus(paymentData.id);
+  //     if (response && response.data) {
+  //       const status = response.data.status;
+  //       if (status === 'paid' || status === 'settlement') {
+  //         showToast("Pembayaran berhasil! Terima kasih atas donasi Anda.");
+  //         navigate("/donation/thank-you");
+  //       } else if (status === 'failed' || status === 'expired') {
+  //         showToast("Pembayaran gagal atau kadaluarsa. Silakan coba lagi.", 'error');
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error checking donation status:", error);
+  //   }
+  // };
 
   return (
     <>

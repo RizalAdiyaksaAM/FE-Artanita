@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, type JSX } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, XCircle, Loader2 } from "lucide-react";
@@ -30,7 +30,7 @@ interface StatusContent {
 }
 
 export default function PaymentStatus(): JSX.Element {
-  const [searchParams] = useSearchParams();
+
   const navigate = useNavigate();
   const [status, setStatus] = useState<PaymentStatus>("loading");
   const [donationData, setDonationData] = useState<DonationData | null>(null);
