@@ -45,8 +45,8 @@ export const useCreateActivity = () => {
         data.videoFiles.forEach((file) => {
           formData.append("video", file);
         });
-      } else if (data.activity_video && data.activity_video.length > 0) {
-        data.activity_video.forEach((video, index) => {
+      } else if (data.activity_videos && data.activity_videos.length > 0) {
+        data.activity_videos.forEach((video, index) => {
           formData.append(`video_urls[${index}]`, video.video_url);
         });
       }

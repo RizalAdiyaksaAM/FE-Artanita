@@ -44,3 +44,5 @@ export interface ActivityFilters {
   limit: number;
   search?: string;
 }
+
+export interface ActivityPayload extends ActivityFormData {}
