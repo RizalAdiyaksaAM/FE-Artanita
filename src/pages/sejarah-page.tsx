@@ -37,7 +37,7 @@ export default function SejarahPage() {
       >
         <motion.h2
           variants={itemVariants}
-          className="text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
+          className="!text-2xl lg:!text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
         >
           Sejarah Singkat
         </motion.h2>
@@ -50,7 +50,7 @@ export default function SejarahPage() {
             variants={itemVariants}
             src={image}
             alt="Hero"
-            className="w-2/3"
+            className="w-full lg:w-2/3"
           />
 
           <motion.div

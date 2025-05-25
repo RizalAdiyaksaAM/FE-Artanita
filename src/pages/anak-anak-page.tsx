@@ -126,7 +126,7 @@ export default function AnakAsuh() {
       <motion.div className="container mx-auto py-12">
         <motion.h2
           variants={itemVariants}
-          className="text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
+          className=" !text-2xl lg:!text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
         >
           Anak Asuh
         </motion.h2>
@@ -134,9 +134,9 @@ export default function AnakAsuh() {
         {/* Filter Section */}
         <motion.div 
           variants={itemVariants}
-          className="mt-8 flex bg-white rounded-lg shadow-lg p-6"
+          className="mt-8 flex  bg-white rounded-lg shadow-lg p-6"
         >
-          <form onSubmit={handleSearch} className=" gap-4  w-full flex justify-between ">
+          <form onSubmit={handleSearch} className=" gap-4  w-full flex flex-col lg:flex-row justify-between ">
             {/* Search Bar */}
             <div className="w-full flex md:flex-row gap-4">
               <div className="relative  flex-1">
@@ -155,7 +155,7 @@ export default function AnakAsuh() {
             </div>
 
             {/* Filters */}
-            <div className="flex gap-4">
+            <div className="flex flex-wrap lg:flex-nowrap gap-4">
               <div className=" space-y-2 ">
                 <Select value={filterAddress} onValueChange={setFilterAddress}>
                   <SelectTrigger>
@@ -230,10 +230,10 @@ export default function AnakAsuh() {
         ) : hasUsers ? (
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 "
           >
             {users.map((user) => (
-              <Card key={user.id} className="py-0 gap-0 overflow-hidden">
+              <Card key={user.id} className="py-0 gap-0  overflow-hidden transition-all duration-300">
                 <motion.img
                   src={user.image}
                   alt={user.name}

@@ -69,7 +69,7 @@ type DashboardItemProps = {
 
 const DashboardItem: React.FC<DashboardItemProps> = ({ icon, alt, label, value }) => {
   return (
-    <motion.div className="flex gap-10 items-start bg-white p-6 rounded-lg shadow-lg">
+    <motion.div className="flex flex-col lg:flex-row gap-4 lg:gap-10 items-start bg-white p-6 rounded-lg shadow-lg">
       <motion.img src={icon} alt={alt} className="w-[77px] h-77px]" />
       <motion.div>
         <motion.p className="text-black font-semibold text-xl">{label}</motion.p>

@@ -202,7 +202,7 @@ export default function ActivityDetail(): JSX.Element {
                   >
                     <Button 
                       variant={activeMediaType === tab.id ? "default" : "outline"}
-                      className={`flex items-center !px-10 py-2 text-sm font-medium rounded-md transition-colors duration-200
+                      className={`flex items-center !px-[34px] py-2 text-sm font-medium rounded-md transition-colors duration-200
                         ${activeMediaType === tab.id 
                           ? "bg-[#379777] text-white hover:bg-[#2a7259]" 
                           : "text-gray-700 border border-gray-300 hover:border-[#379777] hover:text-[#379777]"}

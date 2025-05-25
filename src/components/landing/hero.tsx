@@ -33,32 +33,32 @@ export default function LandingHero() {
     >
       <motion.div
         variants={itemVariants}
-        className="container flex justify-between items-center"
+        className="container flex flex-col-reverse lg:flex-row justify-between items-center"
       >
-        <div className="w-1/2 flex flex-col gap-[32px]">
+        <div className="w-full justify-center items-center lg:items-start lg:w-1/2 flex flex-col gap-[32px]">
           <div className="relative flex flex-col gap-4">
             <motion.h1
               variants={itemVariants}
-              className="z-1 text-4xl font-bold text-[#232323]"
+              className="z-1 !text-3xl lg:!text-6xl !mt-6 lg:!mt-0 text-center lg:text-left font-bold text-[#232323]"
             >
               Donasi Anda, Senyum Mereka
             </motion.h1>
             <motion.h3
               variants={itemVariants}
-              className="text-lg !text-[#232323]"
+              className="!text-lg z-1 lg:!text-2xl text-center lg:text-left !text-[#232323]"
             >
               Belas kasihan anda memberikan kebahagiaan dan harapan bagi
               anak-anak panti asuhan
             </motion.h3>
             <motion.img
               variants={itemVariants}
-              className="absolute right-14"
+              className="absolute right-[-15px] lg:right-14"
               src={vector1}
               alt=""
             />
             <motion.img
               variants={itemVariants}
-              className="absolute bottom-20 left-[-8px]"
+              className="absolute bottom-[-10px]  left-[-120px] lg:bottom-20 lg:left-[-8px]"
               src={vector2}
               alt=""
             />
