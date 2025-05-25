@@ -83,7 +83,7 @@ export default function ActivityPage() {
   // Tampilkan pesan error jika terjadi kesalahan
   if (activityError instanceof Error) {
     return (
-      <div className="container py-20 text-center">
+      <div className="container lg:py-20 text-center">
         <h2 className="text-2xl font-bold text-red-500 mb-4">Error</h2>
         <p>{activityError.message}</p>
       </div>
@@ -261,7 +261,8 @@ export default function ActivityPage() {
       variants={containerVariants}
     >
       <Navbar></Navbar>
-      <motion.div className="container !px-64" variants={containerVariants}>
+      <motion.div className="container  lg:!px-64" variants={containerVariants}>
+        <motion.div className="flex flex-col items-center">
         <motion.div className="mb-10" variants={itemVariants}>
           <h1 className="!text-3xl text-center font-bold">Activity</h1>
           <p className="text-gray-600 text-center !mt-2">
@@ -351,6 +352,7 @@ export default function ActivityPage() {
           </motion.div>
         )}
       </motion.div>
+        </motion.div>
       <Footer/>
     </motion.section>
   );

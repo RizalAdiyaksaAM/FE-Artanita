@@ -58,9 +58,10 @@ export default function PengurusPage() {
     >
       <Navbar />
       <motion.div className="container mx-auto py-12">
+        <motion.div variants={itemVariants} className="flex flex-col items-center justify-center">
         <motion.h2
           variants={itemVariants}
-          className="text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
+          className="!text-2xl lg:!text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
         >
           Pengurus & Pengasuh
         </motion.h2>
@@ -93,6 +94,7 @@ export default function PengurusPage() {
           </motion.div>
         )}
       </motion.div>
+        </motion.div>
       <Footer />
     </motion.section>
   );

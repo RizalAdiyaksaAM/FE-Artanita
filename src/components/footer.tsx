@@ -15,8 +15,8 @@ export default function Footer() {
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Logo and Description */}
-          <div className="flex flex-col space-y-4">
-            <div className="w-24 h-24">
+          <div className="flex flex-col  space-y-4">
+            <div className="w-18 lg:w-24 lg:h-24">
               <img src={logo} alt="Artanita Logo" className="w-full h-full object-contain" />
             </div>
             <p className="text-sm text-white max-w-xs">
@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex  flex-col justify-start space-y-4">
+          <div className="flex  flex-col  justify-start space-y-4">
             <h3 className="!text-lg !text-white font-semibold !mb-4">Fitur</h3>
             <nav className="flex flex-col  space-y-3">
               <a href="/" className="text-sm !text-white hover:text-gray-300">Home</a>

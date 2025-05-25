@@ -37,15 +37,15 @@ export default function LegalitasPage() {
         >
             <motion.h2
           variants={itemVariants}
-          className="text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
+          className="!text-2xl lg:!text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
         >
           Legalitas & Akta Notaris
         </motion.h2>
-        <motion.div className=" flex w-full gap-2 ">
-        <motion.div className="w-1/2 px-18">
+        <motion.div className=" flex flex-col lg:flex-row w-full gap-6 lg:gap-2 ">
+        <motion.div className="w-full lg:w-1/2 lg:px-18">
             <motion.h3
             variants={itemVariants}
-            className="!text-3xl !mb-4   text-center font-bold !text-[#379777]"
+            className="!text-2xl lg:!text-3xl !mb-4   text-center font-bold !text-[#379777]"
             >
            Legalitas
             </motion.h3>
@@ -57,10 +57,10 @@ export default function LegalitasPage() {
               <li>Terdaftar di Dinas Sosial Propinsi Jawa Barat Nomor : 062/286/PPSKS/2022</li>
             </motion.ul>
         </motion.div>
-        <motion.div className="w-1/2 px-18">
+        <motion.div className="w-full lg:w-1/2 lg:px-18">
             <motion.h3
             variants={itemVariants}
-            className="!text-3xl !mb-4  text-center font-bold !text-[#379777]"
+            className="!text-2xl lg:!text-3xl !mb-4  text-center font-bold !text-[#379777]"
             >
            Akta Notaris
             </motion.h3>

@@ -8,7 +8,7 @@ interface DonaturProps {
 
 const Donatur: React.FC<DonaturProps> = ({ name, amount, message }) => {
  return (
-    <div className="rounded-[20px] shadow-lg  overflow-x-auto h-full flex flex-col">
+    <div className="rounded-[20px] shadow-lg  overflow-x-auto h-full  flex flex-col">
       <div className="bg-[#37977780] p-4">
         <h3 className="text-2xl font-semibold !text-black">{name}</h3>
         <p className="font-medium">

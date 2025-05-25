@@ -35,10 +35,10 @@ export default function LandingDonaturs() {
   }
 
   return (
-    <section className="py-12 bg-[#FFFBEF]">
-      <div className="container mx-auto">
+    <section className="pb-10 lg:py-12 bg-[#FFFBEF]">
+      <div className="container mx-auto flex flex-col lg:flex-row items-center">
         <motion.h2 
-          className="text-3xl font-semibold mb-4"
+          className="!text-3xl lg:text-4xl font-semibold !mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -49,7 +49,7 @@ export default function LandingDonaturs() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <motion.p 
-              className="text-gray-600 max-w-2xl"
+              className="text-gray-600 text-center lg:text-left max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -70,7 +70,7 @@ export default function LandingDonaturs() {
               {donaturs.data.map((donatur, index) => (
                 <CarouselItem 
                   key={donatur.id || index} 
-                  className="md:basis-1/2 p-4 lg:basis-1/3 "
+                  className="md:basis-1/2 lg:p-4 lg:basis-1/3 "
                 >
                   <Donatur
                     name={donatur.name}
@@ -80,9 +80,9 @@ export default function LandingDonaturs() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute top-[-50px] right-16 w-10 flex ">
-              <CarouselPrevious className="w-15 h-15 border-[#379777] border text-[#379777] hover:bg-[#379777] hover:text-white"/>
-              <CarouselNext className="w-15 h-15 rounded-full bg-[#379777] text-white hover:bg-[#379777] hover:text-white"/>
+            <div className="absolute left-38 bottom-[-60px] lg:top-[-50px] lg:right-16 w-5 lg:w-10 flex ">
+              <CarouselPrevious className="w-13 h-13 lg:w-15 lg:h-15 border-[#379777] border text-[#379777] hover:bg-[#379777] hover:text-white"/>
+              <CarouselNext className="w-13 h-13 lg:w-15 lg:h-15 rounded-full bg-[#379777] text-white hover:bg-[#379777] hover:text-white"/>
             </div>
           </Carousel>
         </div>

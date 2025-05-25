@@ -11,14 +11,14 @@ export default function LandingWA() {
       backgroundSize: "cover",
       backgroundPosition: "center",
     }}
-    className="py-16 px-4"
+    className="lg:py-16 lg:px-4"
   >
     <motion.div className="container flex flex-col gap-6 items-center justify-center text-center">
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="text-lg sm:text-xl md:text-2xl font-semibold text-white max-w-xl"
+        className="!text-sm lg:text-base sm:text-xl md:text-2xl font-semibold text-white max-w-xl"
       >
         Tanya tentang panti asuhan atau ingin mengunjungi? Chat di nomor bawah ini.
       </motion.p>
@@ -28,7 +28,7 @@ export default function LandingWA() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.3 }}
       >
-        <Button className="flex items-center bg-white text-[#67C15E] px-6 py-3 sm:px-8 sm:py-4 rounded-3xl hover:bg-[#d0e7d4] transition text-base sm:text-lg">
+        <Button className="flex items-center bg-white text-[#67C15E] !px-6 !py-3 sm:px-8 sm:py-4 rounded-3xl hover:bg-[#d0e7d4] transition text-base sm:text-lg">
           <motion.img
             src={whatsapp}
             alt="whatsapp"

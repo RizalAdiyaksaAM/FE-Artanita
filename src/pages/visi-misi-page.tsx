@@ -38,15 +38,15 @@ export default function VisiMisiPage() {
         >
             <motion.h2
           variants={itemVariants}
-          className="text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
+          className="!text-2xl lg:!text-4xl bg-white w-full !py-4 rounded-lg shadow-lg text-center font-bold !text-[#379777]"
         >
           Visi, Misi & Tujuan
         </motion.h2>
-        <motion.div className=" flex gap-2 ">
+        <motion.div className=" flex flex-col lg:flex-row gap-6 lg:gap-2 ">
         <motion.div>
             <motion.h3
             variants={itemVariants}
-            className="!text-3xl !mb-4  text-center font-bold !text-[#379777]"
+            className=" !text-2xl lg:!text-3xl !mb-4  text-center font-bold !text-[#379777]"
             >
            Visi 
             </motion.h3>
@@ -57,7 +57,7 @@ export default function VisiMisiPage() {
         <motion.div>
             <motion.h3
             variants={itemVariants}
-            className="!text-3xl !mb-4  text-center font-bold !text-[#379777]"
+            className="!text-2xl lg:!text-3xl !mb-4  text-center font-bold !text-[#379777]"
             >
            Misi
             </motion.h3>
@@ -73,7 +73,7 @@ export default function VisiMisiPage() {
         <motion.div>
             <motion.h3
             variants={itemVariants}
-            className="!text-3xl !mb-4  text-center font-bold !text-[#379777]"
+            className="!text-2xl lg:!text-3xl !mb-4  text-center font-bold !text-[#379777]"
             >
            Tujuan
             </motion.h3>

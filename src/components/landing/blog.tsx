@@ -66,13 +66,15 @@ export default function LandingBlog() {
       <div className="container mx-auto ">
         <motion.div
           variants={itemVariants}
-          className="flex flex-col lg:flex-row gap-20 items-center justify-between"
+          className="flex flex-col lg:flex-row gap-10 lg:gap-20 items-center justify-between"
         >
           {/* Konten Teks */}
           <motion.div
             variants={itemVariants}
-            className="w-full lg:w-1/2 flex flex-col gap-6"
+            className="w-full lg:w-1/2  flex flex-col items-center lg:items-start gap-6"
           >
+
+            <motion.div className="flex flex-col items-center gap-2">
             <motion.h3
               variants={itemVariants}
               className="text-2xl font-semibold text-green-700"
@@ -81,13 +83,14 @@ export default function LandingBlog() {
             </motion.h3>
             <motion.h2
               variants={itemVariants}
-              className="text-4xl font-bold text-[#232323]"
+              className="!text-3xl lg:!text-4xl text-center font-bold text-[#232323]"
             >
               Siap Membantu Anak Panti Asuhan?
             </motion.h2>
+            </motion.div>
             <motion.p
               variants={itemVariants}
-              className="text-lg text-[#232323]"
+              className="!text-base text-center lg:text-start lg:!text-lg text-[#232323]"
             >
               Berdasarkan anggaran dasar yayasan Artanita Dampak Positif dari
               Setiap Donasi yang Anda Berikan Membawa Harapan Baru untuk Masa
@@ -106,7 +109,7 @@ export default function LandingBlog() {
 
           <motion.div
             variants={itemVariants}
-            className="w-auto flex justify-end items-end gap-10"
+            className="w-auto flex flex-col lg:flex-row justify-end items-end gap-10"
           >
             {/* Kolom kiri: card 1 dan 2 */}
             <div className="flex  flex-col w-[293px] justify-end items-end py-10  gap-10 ">

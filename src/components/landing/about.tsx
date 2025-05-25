@@ -31,7 +31,7 @@ export default function LandingAbout() {
     >
       <motion.div
         variants={itemVariants}
-        className="container flex flex-col lg:flex-row gap-20 items-center justify-between"
+        className="container flex flex-col lg:flex-row gap-10  lg:gap-20 items-center justify-between"
       >
         {/* Gambar */}
         <motion.img
@@ -44,8 +44,10 @@ export default function LandingAbout() {
         {/* Konten Teks */}
         <motion.div
           variants={itemVariants}
-          className="w-full lg:w-1/2 flex flex-col gap-4"
+          className="w-full lg:w-1/2 flex flex-col items-center lg:items-start gap-4"
         >
+          <motion.div className="flex flex-col items-center lg:items-start gap-2">
+            
           <motion.h3
             variants={itemVariants}
             className="text-2xl font-semibold "
@@ -54,13 +56,14 @@ export default function LandingAbout() {
           </motion.h3>
           <motion.h2
             variants={itemVariants}
-            className="text-4xl font-bold text-[#232323]"
+            className="!text-3xl lg:text-4xl font-bold text-[#232323]"
           >
             Sejarah Singkat
           </motion.h2>
+          </motion.div>
           <motion.p
             variants={itemVariants}
-            className="text-[16px] text-[#232323]"
+            className="text-sm lg:text-[16px] text-center lg:text-left text-[#232323]"
           >
             Berdasarkan anggaran dasar yayasan Artanita dengan Akta Notaris Riono Roslan no 16, tanggal 7 juli 1982, diantara maksud tujuan yayasan Artanita, ialah ikut mensejahterakan masyarakat, dan diantara usahanya ialah menyelenggarakan panti asuhan untuk menampung dan mengasuh anak-anak dan termotifasi ayat Al-Quran surat Al-ma’un untuk peduli terhadap anak yatim dan miskin, maka pimpinan yayasan Artanita pada tanggal 7 juli 1987 mulai menyelenggarakan panti asuhan, dengan anak 7 anak. karena belum mempunyai tempat/gedung khusus untuk menampung anak-anak asuh, maka anak-anak asuh tersebut ditampung dirumah pendiri yayasan...
           </motion.p>

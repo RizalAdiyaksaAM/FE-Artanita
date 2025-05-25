@@ -75,14 +75,17 @@ export default function LandingProgram() {
   const hasPrograms = programDonationsData?.data && programDonationsData.data.length > 0;
 
   return (
-    <motion.section className="py-10 bg-[#F5F7F8">
-      <motion.div className="container">
+    <motion.section className="lg:py-10 bg-[#F5F7F8">
+      <motion.div className="container space-y-8">
         {/* Bagian header */}
         <motion.div className="flex flex-col justify-center items-center mb-10 text-center">
-          <motion.h3 className="text-lg font-medium text-blue-600">Campaign</motion.h3>
-          <motion.h2 className="text-2xl font-bold mt-2 mb-3">
+          <motion.div className="flex flex-col justify-center items-center gap-2 text-center">
+            
+          <motion.h3 className="text-2xl font-semibold ">Campaign</motion.h3>
+          <motion.h2 className="!text-3xl lg:text-4xl font-bold text-[#232323] !mb-4">
             Donasi anda sangat membantu mereka
           </motion.h2>
+          </motion.div>
           <motion.p className="max-w-2xl text-gray-600">
             Menjadi Sumber Harapan bagi Anak Panti Asuhan. Ikuti kemajuan kami dalam memberikan kehidupan yang lebih baik
           </motion.p>
@@ -118,13 +121,13 @@ export default function LandingProgram() {
             Belum ada program donasi tersedia
           </motion.div>
         )}
-      </motion.div>
        <motion.div className="flex justify-center" >
             <Button onClick={() => navigate("/campaign")} className="flex items-center rounded-xl h-full bg-[#379777] !px-[40px] !py-[10px] text-base font-semibold text-white hover:bg-[#379759]">
               Read More
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </motion.div>
+      </motion.div>
     </motion.section>
   );
 }
