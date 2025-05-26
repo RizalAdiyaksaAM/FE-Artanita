@@ -1,7 +1,6 @@
-import donations, {  getProgramDetail, type DonationResponse, type DonationsCollectionPayload, type ProgramDetail } from "@/api/donation/donasi";
+import donations, { getProgramDetail, type DonationResponse, type DonationsCollectionPayload, type ProgramDetail } from "@/api/donation/donasi";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Schema validation interfaces
 interface FormData {
@@ -12,6 +11,7 @@ interface FormData {
   email: string;
   amount: number;
   message: string;
+  program_id: string;
 }
 
 interface FormErrors {
@@ -33,6 +33,8 @@ interface PaymentData {
 
 interface DonationFormProps {
   initialData?: Partial<FormData> | null;
+  programId?: string; // Program ID yang dikirim dari parent
+  programData?: any; // Data program yang dikirim dari parent
 }
 
 // Simple validation functions
@@ -79,10 +81,13 @@ const showToast = (message: string, type: 'success' | 'error' = 'success') => {
   }
 };
 
-const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
+const DonationForm: React.FC<DonationFormProps> = ({ 
+  initialData, 
+  programId, 
+  programData 
+}) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { programId } = useParams<{ programId?: string }>();
   
   const [loading, setLoading] = useState(false);
   const [programLoading, setProgramLoading] = useState(false);
@@ -103,13 +108,39 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
     email: initialData?.email || "",
     amount: initialData?.amount || 0,
     message: initialData?.message || "",
+    program_id: programId || "", // Set program_id dari props
   });
   const [errors, setErrors] = useState<FormErrors>({});
 
-  // Fetch program details if programId exists
+  // Update program_id ketika programId props berubah
   useEffect(() => {
-    const fetchProgramDetail = async () => {
-      if (programId && programId.trim() !== '') {
+    if (programId) {
+      setFormData(prev => ({
+        ...prev,
+        program_id: programId
+      }));
+    }
+  }, [programId]);
+
+  // Gunakan programData yang dikirim dari parent jika ada, atau fetch manual
+  useEffect(() => {
+    if (programData) {
+      // Jika programData sudah ada dari parent, langsung gunakan
+      const mappedProgramDetail: ProgramDetail = {
+        id: programData.id,
+        title: programData.title,
+        description: programData.deskripsi || programData.description,
+        target_amount: programData.goal_amount || programData.target_amount,
+        current_amount: programData.current_amount,
+        status: programData.status,
+        image: programData.program_donation_images?.[0]?.image_url,
+        created_at: programData.created_at,
+        updated_at: programData.updated_at
+      };
+      setProgramDetail(mappedProgramDetail);
+    } else if (programId && programId.trim() !== '') {
+      // Jika tidak ada programData dari parent, fetch manual
+      const fetchProgramDetail = async () => {
         setProgramLoading(true);
         setProgramError(null);
         try {
@@ -123,15 +154,14 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
             error?.message ||
             "Gagal memuat detail program. Program mungkin tidak ditemukan.";
           setProgramError(errorMessage);
-          // Don't prevent donation, just show warning
         } finally {
           setProgramLoading(false);
         }
-      }
-    };
+      };
 
-    fetchProgramDetail();
-  }, [programId]);
+      fetchProgramDetail();
+    }
+  }, [programId, programData]);
 
   // Handle payment status from URL
   useEffect(() => {
@@ -194,7 +224,7 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
   const confirmDonation = async () => {
     setLoading(true);
     try {
-      // Prepare payload with program_id from URL params or empty string for general donation
+      // Prepare payload dengan program_id yang sudah diset
       const payload: DonationsCollectionPayload = {
         name: formData.name,
         address: formData.address,
@@ -202,7 +232,7 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
         email: formData.email,
         amount: formData.amount,
         message: formData.message,
-        program_id: programId || "", // Use programId from URL params or empty string for general donation
+        program_id: formData.program_id || "", // Gunakan program_id dari formData
         return_url: `${window.location.origin}/donation?status=pending`,
       };
       
@@ -265,25 +295,6 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
     }
   };
 
-  // const checkDonationStatus = async () => {
-  //   if (!paymentData?.id) return;
-
-  //   try {
-  //     const response = await getDonationStatus(paymentData.id);
-  //     if (response && response.data) {
-  //       const status = response.data.status;
-  //       if (status === 'paid' || status === 'settlement') {
-  //         showToast("Pembayaran berhasil! Terima kasih atas donasi Anda.");
-  //         navigate("/donation/thank-you");
-  //       } else if (status === 'failed' || status === 'expired') {
-  //         showToast("Pembayaran gagal atau kadaluarsa. Silakan coba lagi.", 'error');
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("Error checking donation status:", error);
-  //   }
-  // };
-
   return (
     <>
       {/* Program Information Display */}
@@ -301,31 +312,7 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
               </div>
             ) : programDetail ? (
               <>
-                <h3 className="font-semibold text-lg mb-3">Program Donasi</h3>
-                <div className="space-y-2">
-                  <h4 className="font-medium text-green-700">{programDetail.title}</h4>
-                  <p className="text-sm text-gray-600">{programDetail.description}</p>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Target:</span>
-                    <span>Rp {programDetail.target_amount.toLocaleString('id-ID')}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Terkumpul:</span>
-                    <span>Rp {programDetail.current_amount.toLocaleString('id-ID')}</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-green-600 h-2 rounded-full" 
-                      style={{ 
-                        width: `${Math.min((programDetail.current_amount / programDetail.target_amount) * 100, 100)}%` 
-                      }}
-                    ></div>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Progress:</span>
-                    <span>{Math.round((programDetail.current_amount / programDetail.target_amount) * 100)}%</span>
-                  </div>
-                </div>
+                <h3 className="font-semibold text-lg mb-3 text-center">Program Donasi</h3>
               </>
             ) : null}
           </div>
@@ -340,7 +327,7 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-500">ID Donasi:</span>
-                <span>{paymentData.title}</span>
+                <span className="!text-2xl">{paymentData.title}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-500">Nama:</span>
@@ -524,7 +511,7 @@ const DonationForm: React.FC<DonationFormProps> = ({ initialData }) => {
             <div className="border rounded-lg p-4 mb-4">
               <div className="space-y-2 text-sm">
                 {programDetail && (
-                  <div className="flex justify-between">
+                  <div className="flex gap-2 justify-between">
                     <span className="text-gray-500">Program:</span>
                     <span className="font-medium text-green-700">{programDetail.title}</span>
                   </div>

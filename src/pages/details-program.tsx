@@ -21,7 +21,7 @@ export default function DetailsProgram() {
 const { data: programData, isLoading: isProgramLoading, error: programError } = useProgramDetail(id);
 const { donations: donationData, isLoading: isDonationLoading, error: donationError } = useDonationByProgram(id);
 
- console.log(donationData, "donationData");
+
 
   // Format currency
   const formatCurrency = (amount: number): string => {
@@ -128,13 +128,7 @@ const { donations: donationData, isLoading: isDonationLoading, error: donationEr
               <h1 className="!text-4xl font-bold mb-4">{program.title}</h1>
               
               <div className="flex items-center gap-6 mb-6 text-gray-600">
-                <div className="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                  <span>{program.donator_count || 0} Donatur</span>
-                </div>
+               
                 {program.created_at && (
                   <div className="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -196,11 +190,15 @@ const { donations: donationData, isLoading: isDonationLoading, error: donationEr
             </Tabs>
           </div>
 
-          {/* Kolom kanan - Form Donasi */}
+         {/* Kolom kanan - Form Donasi */}
           <div className="w-full lg:w-1/3">
             <div className="p-4 border border-gray-300 rounded-lg shadow-lg">
-            <DonationForm/>
-                </div>
+              {/* Pass program ID dan data program ke form donasi */}
+              <DonationForm 
+                programId={id}
+                programData={program}
+              />
+            </div>
 
             {/* Informasi Tambahan */}
             <Card className="mt-6  shadow-lg">
