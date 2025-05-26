@@ -36,7 +36,7 @@ export default function LandingDonaturs() {
 
   return (
     <section className="pb-10 lg:py-12 bg-[#FFFBEF]">
-      <div className="container mx-auto flex flex-col lg:flex-row items-center">
+      <div className="container mx-auto flex flex-col  items-center lg:items-start">
         <motion.h2 
           className="!text-3xl lg:text-4xl font-semibold !mb-4"
           initial={{ opacity: 0 }}
@@ -46,7 +46,7 @@ export default function LandingDonaturs() {
           Donatur
         </motion.h2>
         
-        <div className="mb-8">
+        <div className="mb-8 w-full">
           <div className="flex items-center justify-between mb-6">
             <motion.p 
               className="text-gray-600 text-center lg:text-left max-w-2xl"
@@ -80,7 +80,7 @@ export default function LandingDonaturs() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute left-38 bottom-[-60px] lg:top-[-50px] lg:right-16 w-5 lg:w-10 flex ">
+            <div className="absolute left-32 lg:left-[1100px] bottom-[-60px] lg:top-[-350px] w-5 lg:w-10 flex ">
               <CarouselPrevious className="w-13 h-13 lg:w-15 lg:h-15 border-[#379777] border text-[#379777] hover:bg-[#379777] hover:text-white"/>
               <CarouselNext className="w-13 h-13 lg:w-15 lg:h-15 rounded-full bg-[#379777] text-white hover:bg-[#379777] hover:text-white"/>
             </div>

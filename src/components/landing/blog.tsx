@@ -74,7 +74,7 @@ export default function LandingBlog() {
             className="w-full lg:w-1/2  flex flex-col items-center lg:items-start gap-6"
           >
 
-            <motion.div className="flex flex-col items-center gap-2">
+            <motion.div className="flex flex-col items-center  lg:items-start gap-2">
             <motion.h3
               variants={itemVariants}
               className="text-2xl font-semibold text-green-700"
@@ -83,7 +83,7 @@ export default function LandingBlog() {
             </motion.h3>
             <motion.h2
               variants={itemVariants}
-              className="!text-3xl lg:!text-4xl text-center font-bold text-[#232323]"
+              className=" !text-3xl lg:!text-4xl text-center lg:text-start font-bold text-[#232323]"
             >
               Siap Membantu Anak Panti Asuhan?
             </motion.h2>
