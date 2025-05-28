@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import image from "../../assets/image/about-image.png";
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button"; // pastikan Button diimpor dengan benar
+import { useNavigate } from "react-router-dom";
 
 export default function LandingAbout() {
   const containerVariants = {
@@ -21,6 +22,8 @@ export default function LandingAbout() {
       transition: { duration: 0.6 }
     }
   };
+
+  const navigate = useNavigate();
 
   return (
     <motion.section
@@ -68,7 +71,7 @@ export default function LandingAbout() {
             Berdasarkan anggaran dasar yayasan Artanita dengan Akta Notaris Riono Roslan no 16, tanggal 7 juli 1982, diantara maksud tujuan yayasan Artanita, ialah ikut mensejahterakan masyarakat, dan diantara usahanya ialah menyelenggarakan panti asuhan untuk menampung dan mengasuh anak-anak dan termotifasi ayat Al-Quran surat Al-ma’un untuk peduli terhadap anak yatim dan miskin, maka pimpinan yayasan Artanita pada tanggal 7 juli 1987 mulai menyelenggarakan panti asuhan, dengan anak 7 anak. karena belum mempunyai tempat/gedung khusus untuk menampung anak-anak asuh, maka anak-anak asuh tersebut ditampung dirumah pendiri yayasan...
           </motion.p>
           <motion.div variants={itemVariants}>
-            <Button className="flex items-center rounded-xl h-full bg-[#379777] !px-[40px] !py-[10px] text-base font-semibold text-white hover:bg-[#379759]">
+            <Button onClick={() => navigate("/about/sejarah")}  className="flex items-center rounded-xl h-full bg-[#379777] !px-[40px] !py-[10px] text-base font-semibold text-white hover:bg-[#379759]">
               Read More
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
