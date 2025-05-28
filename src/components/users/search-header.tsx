@@ -37,8 +37,8 @@ export const SearchHeaderUser = ({
   onFilterChange,
   onClearFilters,
   onCreateUser,
-  positionOptions = ["Pengurus", "Anak Asuh", "Anak Panti"],
-  educationOptions = ["SD", "SMP", "SMA", "Kuliah"],
+  positionOptions = ["Pengurus", "Anak Asuh",],
+  educationOptions = ["SD", "SMP", "SMA", ],
 }: SearchHeaderUserProps) => {
   const activeFilterCount = Object.values(filters).filter((v) => v && v !== "").length;
   const hasActiveFilters = activeFilterCount > 0 || searchInput;

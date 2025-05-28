@@ -331,7 +331,7 @@ export default function Navbar({}: NavbarProps) {
       {/* Modal Donation Form */}
       {isModalOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 p-4 transition-opacity duration-300"
+          className="fixed inset-0 bg-black/60  flex justify-center items-center z-50 p-4 transition-opacity duration-300"
           onClick={handleModalBackdropClick}
         >
           <div 
@@ -341,8 +341,7 @@ export default function Navbar({}: NavbarProps) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white rounded-t-2xl border-b border-gray-100 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-gray-800">Form Donasi</h2>
+            <div className="sticky top-0 rounded-t-2xl  bg-white/0 border-gray-100 px-6 pt-6 flex justify-end items-end  ">
               <button
                 className="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
                 onClick={handleModalClose}

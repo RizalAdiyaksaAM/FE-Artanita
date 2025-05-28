@@ -10,11 +10,11 @@ import DetailsProgram from "@/pages/details-program";
 import ActivityPage from "@/pages/activity-page";
 import DetailsActivityPage from "@/pages/details-activity";
 import AboutPage from "@/pages/about-page";
-import SejarahPage from "@/pages/sejarah-page";
-import VisiMisiPage from "@/pages/visi-misi-page";
-import LegalitasPage from "@/pages/legalitas-page";
-import PengurusPage from "@/pages/pengurus-page";
-import AnakAsuh from "@/pages/anak-anak-page";
+import SejarahPage from "@/pages/about/sejarah-page";
+import VisiMisiPage from "@/pages/about/visi-misi-page";
+import LegalitasPage from "@/pages/about/legalitas-page";
+import PengurusPage from "@/pages/about/pengurus-page";
+import AnakAsuh from "@/pages/about/anak-anak-page";
 import LoginPage from "@/pages/login-admin";
 import UnauthorizedPage from "@/pages/unauthorized";
 

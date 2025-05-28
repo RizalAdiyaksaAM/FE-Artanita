@@ -1,4 +1,4 @@
-import { getDashboard, type DashboardFetchResponse } from "@/api/donation/dashboard";
+import { getDashboard, getDonationsDonatur, type DashboardFetchResponse, type NotifikasiFetchResponse } from "@/api/donation/dashboard";
 import { useQuery } from "@tanstack/react-query";
 
 export const useDashboard = () => {
@@ -9,5 +9,15 @@ export const useDashboard = () => {
             staleTime: 1000 * 60 * 5,
         }
     );
+}
+
+export const useDonationDonatur = () => {
+    return useQuery<NotifikasiFetchResponse>(
+        {
+            queryKey: ["donation-notifikasi"],
+            queryFn: () => getDonationsDonatur(),
+            staleTime: 1000 * 60 * 5,
+        }  
+    )
 }
 

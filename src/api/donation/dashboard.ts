@@ -45,3 +45,13 @@ export const getDashboard = async (): Promise<DashboardFetchResponse> => {
   }
 };
 
+export const getDonationsDonatur = async (): Promise<NotifikasiFetchResponse> => {
+  try {
+    const response = await http.get(API_ENDPOINTS.NOTIFIKASI);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching notifikasi:", error);
+    throw error;
+  }
+};
+
