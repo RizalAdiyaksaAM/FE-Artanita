@@ -98,9 +98,9 @@ export default function Navbar({}: NavbarProps) {
   ];
 
   const navLinks = [
-    { path: "/", label: "Home" },
-    { path: "/campaign", label: "Campaign" },
-    { path: "/activity", label: "Activity" },
+    { path: "/", label: "Beranda" },
+    { path: "/campaign", label: "Program Donasi" },
+    { path: "/activity", label: "Aktivitas" },
   ];
 
   const handleAboutToggle = (e: React.MouseEvent) => {
@@ -173,7 +173,7 @@ export default function Navbar({}: NavbarProps) {
                     : "!text-gray-700 hover:!text-[#379777]"
                 }`}
               >
-                About 
+                Tentang Panti
                 <ChevronDownIcon 
                   className={`w-4 h-4 transition-transform duration-300 ${
                     isAboutOpen ? 'rotate-180' : 'rotate-0'

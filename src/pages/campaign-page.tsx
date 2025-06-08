@@ -305,7 +305,7 @@ export default function CampaignPage() {
           className="text-3xl font-bold"
           variants={itemVariants}
         >
-          Campaign
+          Program Donasi
         </motion.h2>
         
         {/* Bagian dashboard */}

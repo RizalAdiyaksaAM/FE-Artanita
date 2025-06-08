@@ -264,7 +264,7 @@ export default function ActivityPage() {
       <motion.div className="container  lg:!px-64" variants={containerVariants}>
         <motion.div className="flex flex-col items-center">
         <motion.div className="mb-10" variants={itemVariants}>
-          <h1 className="!text-3xl text-center font-bold">Activity</h1>
+          <h1 className="!text-3xl text-center font-bold">Aktivitas</h1>
           <p className="text-gray-600 text-center !mt-2">
             Lihat berbagai kegiatan yang telah dilakukan oleh anak-anak panti asuhan
           </p>

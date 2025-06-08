@@ -18,9 +18,17 @@ const Dashboard: React.FC<DashboardProps> = ({
   total_donation,
   unique_donators_count,
 }) => {
-  // Format currency
+  // Format currency - tambahkan pengecekan untuk nilai 0
   const formatCurrency = (amount: number): string => {
-    return amount.toLocaleString("id-ID");
+    // Pastikan amount adalah number yang valid
+    const validAmount = typeof amount === 'number' && !isNaN(amount) ? amount : 0;
+    return validAmount.toLocaleString("id-ID");
+  };
+
+  // Format number - tambahkan pengecekan untuk nilai 0
+  const formatNumber = (value: number): string => {
+    const validValue = typeof value === 'number' && !isNaN(value) ? value : 0;
+    return validValue.toString();
   };
 
   const dashboardItems = [
@@ -28,7 +36,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       icon: iconProgram,
       alt: "Program Donasi",
       label: "Program Donasi",
-      value: program_count.toString(),
+      value: formatNumber(program_count),
     },
     {
       icon: iconDonasi,
@@ -40,12 +48,17 @@ const Dashboard: React.FC<DashboardProps> = ({
       icon: iconDonatur,
       alt: "Total Donatur",
       label: "Total Donatur",
-      value: unique_donators_count.toString(),
+      value: formatNumber(unique_donators_count),
     },
   ];
 
   return (
-    <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <motion.div 
+      className="grid grid-cols-1 md:grid-cols-3 gap-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       {dashboardItems.map((item, index) => (
         <DashboardItem
           key={index}
@@ -53,6 +66,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           alt={item.alt}
           label={item.label}
           value={item.value}
+          index={index}
         />
       ))}
     </motion.div>
@@ -65,15 +79,55 @@ type DashboardItemProps = {
   alt: string;
   label: string;
   value: string;
+  index?: number;
 };
 
-const DashboardItem: React.FC<DashboardItemProps> = ({ icon, alt, label, value }) => {
+const DashboardItem: React.FC<DashboardItemProps> = ({ 
+  icon, 
+  alt, 
+  label, 
+  value, 
+  index = 0 
+}) => {
   return (
-    <motion.div className="flex flex-col lg:flex-row gap-4 lg:gap-10 items-start bg-white p-6 rounded-lg shadow-lg">
-      <motion.img src={icon} alt={alt} className="w-[77px] h-77px]" />
-      <motion.div>
-        <motion.p className="text-black font-semibold text-xl">{label}</motion.p>
-        <motion.p className="text-[34px] font-bold mt-1">{value}</motion.p>
+    <motion.div 
+      className="flex flex-col lg:flex-row gap-4 lg:gap-10 items-start bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.5, 
+        delay: index * 0.1 // Staggered animation
+      }}
+      whileHover={{ scale: 1.02 }}
+    >
+      <motion.div className="flex-shrink-0">
+        <motion.img 
+          src={icon} 
+          alt={alt} 
+          className="w-[77px] h-[77px] object-contain"
+          onError={(e) => {
+            // Fallback jika gambar tidak bisa dimuat
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+          }}
+        />
+      </motion.div>
+      <motion.div className="flex-1 min-w-0">
+        <motion.p className="text-black font-semibold text-xl mb-1 break-words">
+          {label}
+        </motion.p>
+        <motion.p 
+          className="text-[34px] font-bold text-[#379777] leading-tight break-all"
+          style={{ wordBreak: 'break-word' }}
+        >
+          {value || "0"}
+        </motion.p>
+        {/* Indikator jika nilai adalah 0 */}
+        {(value === "0" || value === "Rp 0") && (
+          <motion.p className="text-sm text-gray-500 mt-1">
+            Belum ada data
+          </motion.p>
+        )}
       </motion.div>
     </motion.div>
   );

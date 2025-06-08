@@ -79,7 +79,7 @@ export default function LandingBlog() {
               variants={itemVariants}
               className="text-2xl font-semibold text-green-700"
             >
-              Activity
+              Aktivitas
             </motion.h3>
             <motion.h2
               variants={itemVariants}
@@ -101,7 +101,7 @@ export default function LandingBlog() {
                 onClick={() => navigate("/activity")}
                 className="flex items-center rounded-xl h-full bg-[#379777] !px-[40px] !py-[10px] text-base font-semibold text-white hover:bg-[#379759]"
               >
-                Read More
+                Selengkapnya
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
