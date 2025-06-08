@@ -97,6 +97,7 @@ const DonationForm: React.FC<DonationFormProps> = ({
   const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showPaymentInfo, setShowPaymentInfo] = useState(false); // State untuk payment info modal
   const [programDetail, setProgramDetail] = useState<ProgramDetail | null>(null);
   const [programError, setProgramError] = useState<string | null>(null);
   
@@ -288,6 +289,11 @@ const DonationForm: React.FC<DonationFormProps> = ({
   };
 
   const proceedToPayment = () => {
+    // Tampilkan modal informasi pembayaran terlebih dahulu
+    setShowPaymentInfo(true);
+  };
+
+  const goToMidtrans = () => {
     if (paymentData && paymentData.snap_url) {
       window.location.href = paymentData.snap_url;
     } else {
@@ -557,6 +563,81 @@ const DonationForm: React.FC<DonationFormProps> = ({
                 className="!px-4 !py-2 bg-yellow-400 text-black font-semibold rounded-md hover:bg-yellow-300 transition-colors disabled:opacity-50"
               >
                 {loading ? "Memproses..." : "Konfirmasi & Bayar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Payment Information Modal */}
+      {showPaymentInfo && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <h3 className="text-xl font-semibold !mb-4 text-center">Informasi Pembayaran Midtrans (Sandbox)</h3>
+            
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 !mb-4">
+              <h4 className="font-semibold text-blue-800 !mb-2">📍 Penting: Ini adalah mode testing (Sandbox)</h4>
+              <p className="text-sm text-blue-700">
+                Sistem ini menggunakan Midtrans Sandbox untuk testing. Tidak ada transaksi uang sungguhan yang akan terjadi.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="border rounded-lg p-4">
+                <h4 className="font-semibold !mb-3">💳 Cara Pembayaran menggunakan BCA Virtual Account:</h4>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-start gap-2">
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium min-w-[24px] text-center">1</span>
+                    <p>Klik tombol "Lanjutkan ke Midtrans" di bawah untuk membuka halaman pembayaran</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium min-w-[24px] text-center">2</span>
+                    <p>Pilih metode pembayaran "Bank Transfer" → "BCA Virtual Account"</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium min-w-[24px] text-center">3</span>
+                    <p>Sistem akan memberikan nomor Virtual Account BCA</p>
+                  </div>
+                  <div className="flex  items-start gap-2">
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium min-w-[24px] text-center">4</span>
+                                      <p>Untuk BCA VA, simulasi pembayaran dapat dilakukan langsung di halaman Midtrans</p>
+
+                  </div>
+                  <div className="flex  items-start gap-2">
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium min-w-[24px] text-center">5</span>
+                  <p>Akses simulator lengkap di: <a href="https://simulator.sandbox.midtrans.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline hover:text-blue-800">https://simulator.sandbox.midtrans.com/</a></p>
+                  </div>
+                  <div className="flex  items-start gap-2">
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium min-w-[24px] text-center">6</span>
+                    <p>Untuk testing, klik tombol "Bayar Sekarang" atau "Pay Now" yang tersedia di halaman Midtrans</p>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div className="border rounded-lg p-4 bg-yellow-50">
+                <h4 className="font-semibold mb-2 text-yellow-800">⚠️ Catatan Penting:</h4>
+                <ul className="text-sm text-yellow-700 space-y-1">
+                  <li>• Jangan gunakan data kartu kredit atau informasi bank sungguhan</li>
+                  <li>• Ini hanya untuk testing sistem donasi</li>
+                  <li>• Status pembayaran akan otomatis diupdate setelah simulasi berhasil</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="flex justify-end gap-3 mt-6">
+              <button
+                onClick={() => setShowPaymentInfo(false)}
+                className="!px-4 !py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+              >
+                Tutup
+              </button>
+              <button
+                onClick={goToMidtrans}
+                className="!px-6 !py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Lanjutkan ke Midtrans
               </button>
             </div>
           </div>

@@ -55,7 +55,7 @@ export default function LandingAbout() {
             variants={itemVariants}
             className="text-2xl font-semibold "
           >
-            About Us
+            Tentang Panti
           </motion.h3>
           <motion.h2
             variants={itemVariants}
@@ -72,7 +72,7 @@ export default function LandingAbout() {
           </motion.p>
           <motion.div variants={itemVariants}>
             <Button onClick={() => navigate("/about/sejarah")}  className="flex items-center rounded-xl h-full bg-[#379777] !px-[40px] !py-[10px] text-base font-semibold text-white hover:bg-[#379759]">
-              Read More
+              Selengkapnya
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </motion.div>

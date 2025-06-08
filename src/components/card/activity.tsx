@@ -63,7 +63,7 @@ const Activity: React.FC<ActivityProps> = ({
 
         
           <a onClick={handleNavigateToDetail} className="!text-[#379777] !bg-transparent text-sm flex items-center" href="">
-            Read More
+            Selengkapnya
             <ArrowRight className="ml-2 h-5 w-5" />
           </a>
         

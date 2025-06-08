@@ -5,6 +5,7 @@ import { useState, useEffect, type JSX } from "react";
 import useActivityDetail from "@/api/orphanage-activity/get-by-id-activity";
 import { Calendar, MapPin, Image, Film, ArrowLeft } from "lucide-react";
 import DonationForm from "@/components/form/donation";
+import Footer from "@/components/footer";
 
 // TypeScript interfaces
 interface ActivityImage {
@@ -331,6 +332,9 @@ export default function ActivityDetail(): JSX.Element {
           </motion.div>
         </div>
       </motion.div>
+      
+      {/* Footer */}
+      <Footer />
     </motion.section>
   );
 }
