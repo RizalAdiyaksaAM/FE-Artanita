@@ -112,7 +112,7 @@ export default function LandingBlog() {
             className="w-auto flex flex-col lg:flex-row justify-end items-end gap-10"
           >
             {/* Kolom kiri: card 1 dan 2 */}
-            <div className="flex  flex-col w-[293px] justify-end items-end py-10  gap-10 ">
+            <div className="flex  flex-col w-[293px] justify-end items-end py-0 lg:py-10  gap-10 ">
               {dataBlog.data.slice(0, 2).map((activity) => (
                 <Activity
                   key={activity.id}
