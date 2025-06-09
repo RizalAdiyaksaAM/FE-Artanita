@@ -159,9 +159,7 @@ const ProgramDonation: React.FC<ProgramDonationProps> = ({
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
-                Target Terbuka - Setiap donasi sangat berarti
-              </span>
+
             </motion.div>
           )}
         </motion.div>

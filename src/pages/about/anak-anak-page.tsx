@@ -41,13 +41,65 @@ export default function AnakAsuh() {
     },
   };
 
+  // Card animation variants
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.9 
+    },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: "easeOut"
+      }
+    }),
+    hover: {
+      y: -8,
+      scale: 1.02,
+      boxShadow: "0 20px 40px rgba(55, 151, 119, 0.15)",
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Image animation variants
+  const imageVariants = {
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Content animation variants
+  const contentVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        delay: 0.2
+      }
+    }
+  };
+
   // Filter states
   const [searchName, setSearchName] = useState("");
   const [filterAddress, setFilterAddress] = useState("all");
   const [filterAge, setFilterAge] = useState("all");
   const [filterEducation, setFilterEducation] = useState("all");
   const [page, setPage] = useState(1);
-  const [limit] = useState(9);
+  const [limit] = useState(8);
 
   // List of unique addresses, ages, and education levels for filter options
   const [addressOptions, setAddressOptions] = useState<string[]>([]);
@@ -230,42 +282,82 @@ export default function AnakAsuh() {
         ) : hasUsers ? (
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 "
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
           >
-            {users.map((user) => (
-              <Card key={user.id} className="py-0 gap-0  overflow-hidden transition-all duration-300">
-                <motion.img
-                  src={user.image}
-                  alt={user.name}
-                  className="w-full  h-[274px] rounded-t-xl object-cover"
-                />
-                <motion.div className="bg-[#379777] h-1"></motion.div>
-                <CardContent className="p-4">
-                  <motion.h3 className="!text-lg !mb-2 !text-black  font-semibold mt-2 text-center">
-                    {user.name}
-                  </motion.h3>
-                  <motion.div className="flex justify-between">
-                    <motion.div className="flex justify-center  items-center gap-1">
-                      <GraduationCap className="h-5 w-5 text-[#379777]" />
-                      <motion.p className="!text-[10px] !text-black font-semibold mt-2 text-center">
-                        {user.education}
-                      </motion.p>
+            {users.map((user, index) => (
+              <motion.div
+                key={user.id}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                className="cursor-pointer"
+              >
+                <Card className="py-0 gap-0 overflow-hidden transition-all duration-300 border-0 shadow-md">
+                  <div className="overflow-hidden rounded-t-xl">
+                    <motion.img
+                      variants={imageVariants}
+                      src={user.image}
+                      alt={user.name}
+                      className="w-full h-[274px] object-cover"
+                    />
+                  </div>
+                  <motion.div 
+                    className="bg-[#379777] h-1"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
+                  />
+                  <CardContent className="p-4">
+                    <motion.div
+                      variants={contentVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <motion.h3 
+                        className="!text-lg !mb-2 !text-black font-semibold mt-2 text-center"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {user.name}
+                      </motion.h3>
+                      <motion.div className="flex justify-between">
+                        <motion.div 
+                          className="flex justify-center items-center gap-1"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <GraduationCap className="h-5 w-5 text-[#379777]" />
+                          <motion.p className="!text-[10px] !text-black font-semibold mt-2 text-center">
+                            {user.education}
+                          </motion.p>
+                        </motion.div>
+                        <motion.div 
+                          className="flex justify-center items-center gap-1"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <UsersRound className="h-5 w-5 text-[#379777]" />
+                          <motion.p className="!text-[10px] !text-black font-semibold mt-2 text-center">
+                            {user.age} <span>Tahun</span>
+                          </motion.p>
+                        </motion.div>
+                        <motion.div 
+                          className="flex justify-center items-center gap-1"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <MapPin className="h-5 w-5 text-[#379777]" />
+                          <motion.p className="!text-[10px] !text-black font-semibold mt-2 text-center">
+                            {user.address}
+                          </motion.p>
+                        </motion.div>
+                      </motion.div>
                     </motion.div>
-                    <motion.div className="flex justify-center  items-center gap-1">
-                      <UsersRound className="h-5 w-5 text-[#379777]" />
-                      <motion.p className="!text-[10px] !text-black font-semibold mt-2 text-center">
-                        {user.age} <span>Tahun</span>
-                      </motion.p>
-                    </motion.div>
-                    <motion.div className="flex justify-center  items-center gap-1">
-                      <MapPin className="h-5 w-5 text-[#379777]" />
-                      <motion.p className="!text-[10px] !text-black font-semibold mt-2 text-center">
-                        {user.address}
-                      </motion.p>
-                    </motion.div>
-                  </motion.div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </motion.div>
         ) : (
