@@ -80,7 +80,7 @@ export default function LandingDonaturs() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute left-32 lg:left-[1100px] bottom-[-60px] lg:top-[-350px] w-5 lg:w-10 flex ">
+            <div className="absolute left-38 lg:left-[1100px] bottom-[-60px] lg:top-[-350px] w-5 lg:w-10 flex ">
               <CarouselPrevious className="w-13 h-13 lg:w-15 lg:h-15 border-[#379777] border text-[#379777] hover:bg-[#379777] hover:text-white"/>
               <CarouselNext className="w-13 h-13 lg:w-15 lg:h-15 rounded-full bg-[#379777] text-white hover:bg-[#379777] hover:text-white"/>
             </div>
