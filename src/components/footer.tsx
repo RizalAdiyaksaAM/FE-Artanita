@@ -28,10 +28,10 @@ export default function Footer() {
           <div className="flex  flex-col  justify-start space-y-4">
             <h3 className="!text-lg !text-white font-semibold !mb-4">Fitur</h3>
             <nav className="flex flex-col  space-y-3">
-              <a href="/" className="text-sm !text-white hover:text-gray-300">Home</a>
-              <a href="/about" className="text-sm !text-white hover:text-gray-300">About Us</a>
-              <a href="/campaign" className="text-sm !text-white hover:text-gray-300">Campaign</a>
-              <a href="/activity" className="text-sm !text-white hover:text-gray-300">Activity</a>
+              <a href="/" className="text-sm !text-white hover:text-gray-300">Beranda</a>
+              <a href="/about/sejarah" className="text-sm !text-white hover:text-gray-300">Tentang Panti</a>
+              <a href="/campaign" className="text-sm !text-white hover:text-gray-300">Program Donasi</a>
+              <a href="/activity" className="text-sm !text-white hover:text-gray-300">Aktivitas</a>
             </nav>
           </div>
 
