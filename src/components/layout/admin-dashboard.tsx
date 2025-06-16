@@ -58,8 +58,8 @@ export default function AdminLayout() {
   }, [location.pathname]);
 
   const menuItems: MenuItem[] = [
-    { icon: <HandCoins  size={20} />, label: "Donation", path: "/admin/donation" },
-    { icon: <Calendar size={20} />, label: "Activities", path: "/admin/activities" },
+    { icon: <HandCoins  size={20} />, label: "Donasi", path: "/admin/donation" },
+    { icon: <Calendar size={20} />, label: "Aktivitas", path: "/admin/activities" },
     { icon: <Users size={20} />, label: "User", path: "/admin/user" },
   ];
 

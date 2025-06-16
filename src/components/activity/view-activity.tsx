@@ -5,10 +5,9 @@ import {
   DialogHeader, 
   DialogTitle, 
   DialogDescription, 
-  DialogFooter
+
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Pencil, Trash2 } from "lucide-react";
+
 import type { Activity } from "@/types/activity";
 import { formatDateTime } from "@/utils/activity";
 
@@ -25,8 +24,6 @@ export const ViewActivityModal = ({
   isOpen,
   activity,
   onOpenChange,
-  onEdit,
-  onDelete
 }: ViewActivityModalProps) => {
   if (!activity) return null;
 
@@ -95,36 +92,7 @@ export const ViewActivityModal = ({
             </div>
           )}
         </div>
-        
-        <DialogFooter className="sm:justify-between flex-shrink-0">
-          <Button className="!px-4" variant="outline" onClick={() => onOpenChange(false)}>
-            Close
-          </Button>
-          <div className="flex gap-2">
-            <Button 
-            className="!px-4"
-              variant="outline"
-              onClick={() => {
-                onOpenChange(false);
-                setTimeout(() => onEdit(activity), 300);
-              }}
-            >
-              <Pencil className="mr-2 h-4 w-4" />
-              Edit
-            </Button>
-            <Button 
-            className="!px-4"
-              variant="destructive"
-              onClick={() => {
-                onOpenChange(false);
-                setTimeout(() => onDelete(activity), 300);
-              }}
-            >
-              <Trash2 className="mr-2 h-4 w-4" />
-              Delete
-            </Button>
-          </div>
-        </DialogFooter>
+
       </DialogContent>
     </Dialog>
   );

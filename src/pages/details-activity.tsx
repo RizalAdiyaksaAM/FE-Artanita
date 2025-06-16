@@ -6,6 +6,7 @@ import useActivityDetail from "@/api/orphanage-activity/get-by-id-activity";
 import { Calendar, MapPin, Image, Film, ArrowLeft } from "lucide-react";
 import DonationForm from "@/components/form/donation";
 import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 
 // TypeScript interfaces
 interface ActivityImage {
@@ -132,6 +133,7 @@ export default function ActivityDetail(): JSX.Element {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
+  
         <h2 className="text-2xl font-bold text-red-500 mb-4">Error</h2>
         <p>{error?.message || "Data aktivitas tidak ditemukan"}</p>
         <motion.div
@@ -166,6 +168,7 @@ export default function ActivityDetail(): JSX.Element {
       animate="visible"
       variants={containerVariants}
     >
+            <Navbar />
       <motion.div className="container" variants={itemVariants}>
         {/* Navigasi Kembali */}
         <motion.div className="mb-6" variants={itemVariants}>

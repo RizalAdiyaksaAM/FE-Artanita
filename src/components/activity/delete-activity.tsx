@@ -24,21 +24,21 @@ export const DeleteActivityDialog = ({
     <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle>Apakah anda yakin?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action will permanently delete the activity 
+           Tindakan ini akan secara permanen menghapus program 
             {activityToDelete ? ` "${activityToDelete.title}"` : ""}. 
-            This action cannot be undone.
+            Tindakan ini tidak dapat dibatalkan.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="!px-4" disabled={isDeleting}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="!px-4" disabled={isDeleting}>Batal</AlertDialogCancel>
           <AlertDialogAction 
             onClick={onConfirmDelete} 
             className="bg-red-600 !px-4 hover:bg-red-700"
             disabled={isDeleting}
           >
-            {isDeleting ? "Deleting..." : "Delete"}
+            {isDeleting ? "Menghapus..." : "Hapus"}
           </AlertDialogAction>
         </AlertDialogFooter>
         

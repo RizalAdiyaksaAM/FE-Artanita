@@ -5,11 +5,8 @@ import {
   DialogHeader, 
   DialogTitle, 
   DialogDescription, 
-  DialogFooter
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Pencil, Trash2 } from "lucide-react";
 import type { User } from "@/types/user";
 
 
@@ -25,8 +22,6 @@ export const ViewUserModal = ({
   isOpen,
   user,
   onOpenChange,
-  onEdit,
-  onDelete
 }: ViewUserModalProps) => {
   if (!user) return null;
 
@@ -85,35 +80,6 @@ export const ViewUserModal = ({
           </div>
         </div>
         
-        <DialogFooter className="sm:justify-between">
-          <Button className="!px-4" variant="outline" onClick={() => onOpenChange(false)}>
-            Close
-          </Button>
-          <div className="flex gap-2">
-            <Button 
-              className="!px-4"
-              variant="outline"
-              onClick={() => {
-                onOpenChange(false);
-                setTimeout(() => onEdit(user), 300);
-              }}
-            >
-              <Pencil className="mr-2 h-4 w-4" />
-              Edit
-            </Button>
-            <Button 
-              className="!px-4"
-              variant="destructive"
-              onClick={() => {
-                onOpenChange(false);
-                setTimeout(() => onDelete(user), 300);
-              }}
-            >
-              <Trash2 className="mr-2 h-4 w-4" />
-              Delete
-            </Button>
-          </div>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
