@@ -4,36 +4,35 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ScrollArea } from "@/components/ui/scroll-area"; // Added ScrollArea import
+import { ScrollArea } from "@/components/ui/scroll-area";
 import useProgramDetail from "@/api/program-donation/get-by-id-program";
 import DonationForm from "@/components/form/donation";
 import Footer from "@/components/footer";
 import useDonationByProgram from "@/api/program-donation/get-donation";
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
 import { Heart, MessageCircle } from "lucide-react";
+import Navbar from "@/components/navbar";
 
 export default function DetailsProgram() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // Gunakan custom hook untuk mendapatkan data program
   const {
     data: programData,
     isLoading: isProgramLoading,
     error: programError,
   } = useProgramDetail(id);
+
   const {
     donations: donationData,
     isLoading: isDonationLoading,
     error: donationError,
   } = useDonationByProgram(id);
 
-  // Format currency
   const formatCurrency = (amount: number): string => {
     return amount.toLocaleString("id-ID");
   };
 
-  // Format date
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("id-ID", {
@@ -52,18 +51,37 @@ export default function DetailsProgram() {
       .slice(0, 2);
   };
 
-  // Calculate progress percentage
-  const calculateProgress = (): number => {
-    if (!programData?.data || programData.data.goal_amount <= 0) return 0;
-    return Math.min(
-      Math.round(
-        (programData.data.current_amount / programData.data.goal_amount) * 100
-      ),
-      100
-    );
+  const getCurrentAmount = (): number => {
+    if (!programData?.data) return 0;
+
+    const program = programData.data;
+    let currentAmount = parseFloat(program.current_amount?.toString() || "0") || 0;
+
+    if (currentAmount === 0 && donationData?.length) {
+      currentAmount = donationData.reduce((sum, donation) => {
+        const amount = parseFloat(donation.amount?.toString() || '0') || 0;
+        return sum + amount;
+      }, 0);
+    }
+
+    return currentAmount;
   };
 
-  // Handle kembali ke halaman campaign
+  const calculateProgress = (): number => {
+    if (!programData?.data) return 0;
+
+    const program = programData.data;
+    const goalAmount = parseFloat(program.goal_amount?.toString() || "0") || 0;
+
+    const currentAmount = getCurrentAmount();
+
+    if (goalAmount === 0) return 100;
+    if (goalAmount > 0 && currentAmount === 0) return 0;
+
+    const progress = (currentAmount / goalAmount) * 100;
+    return Math.min(Math.round(progress), 100);
+  };
+
   const handleBackToCampaign = () => {
     navigate("/campaign");
   };
@@ -98,6 +116,8 @@ export default function DetailsProgram() {
   }
 
   const program = programData.data;
+  const currentAmount = getCurrentAmount();
+  const progressPercentage = calculateProgress();
 
   return (
     <motion.section
@@ -105,6 +125,7 @@ export default function DetailsProgram() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <Navbar />
       <div className="container py-10">
         {/* Navigasi Kembali */}
         <div className="mb-6">
@@ -184,23 +205,71 @@ export default function DetailsProgram() {
                 )}
               </div>
 
-              {/* Progress Bar */}
+              {/* Progress Bar - UPDATED */}
               <div className="mb-6 relative">
-                <div className="flex justify-between items-center mb-1">
-                  <p className="font-medium">
-                    Target: Rp {formatCurrency(program.goal_amount)}
-                  </p>
-                  <p className="text-[#379777] font-bold">
-                    {calculateProgress()}%
-                  </p>
-                </div>
-                <Progress
-                  className="h-4 bg-[#E5E5E5]"
-                  value={calculateProgress()}
-                />
-                <p className="mt-1 font-medium">
-                  Terkumpul: Rp {formatCurrency(program.current_amount)}
-                </p>
+                {program.goal_amount && parseFloat(program.goal_amount.toString()) > 0 ? (
+                  // Progress bar normal dengan target tertentu
+                  <>
+                    <div className="flex justify-between items-center mb-2">
+                      <p className="font-medium">
+                        Target: Rp {formatCurrency(parseFloat(program.goal_amount.toString()) || 0)}
+                      </p>
+                      <p className="text-[#379777] font-bold">
+                        {progressPercentage}%
+                      </p>
+                    </div>
+                    <Progress
+                      className="h-4 bg-[#E5E5E5]"
+                      value={progressPercentage}
+                    />
+                    <div className="flex justify-between items-center mt-2">
+                      <p className="font-medium">
+                        Terkumpul: Rp {formatCurrency(currentAmount)}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {donationData?.length || 0} donatur
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  // Progress bar untuk target terbuka (goal_amount = 0)
+                  <>
+                    <div className="flex justify-between items-center mb-2">
+                      <p className="font-medium text-[#379777]">
+                        Target: Terbuka (Donasi Bebas)
+                      </p>
+                      <p className="text-[#379777] font-bold flex items-center gap-1">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                        Aktif
+                      </p>
+                    </div>
+                    <div className="h-4 bg-[#E5E5E5] rounded-full overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-[#379777] to-[#2a7259] w-full animate-pulse"></div>
+                    </div>
+                    <div className="flex justify-between items-center mt-2">
+                      <p className="font-medium">
+                        Total Terkumpul: Rp {formatCurrency(currentAmount)}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {donationData?.length || 0} donatur
+                      </p>
+                    </div>
+                  </>
+                )}
+                
+              
               </div>
             </div>
 
@@ -224,7 +293,7 @@ export default function DetailsProgram() {
               <TabsContent value="donatur" className="mt-6">
                 {donationData && donationData.length > 0 ? (
                   <div className="space-y-4 md:space-y-6">
-                    {/* Header Statistics */}
+                    {/* Header Statistics - UPDATED */}
                     <div className="bg-gradient-to-r from-[#379777]/10 to-[#379777]/5 rounded-xl p-3 md:p-4 border border-[#379777]/20">
                       <div className="flex items-center justify-between space-y-3 sm:space-y-0">
                         <div className="flex items-center justify-center gap-4 m-0">
@@ -239,7 +308,7 @@ export default function DetailsProgram() {
                         <div className=" text-right">
                           <p className="!text-xs text-gray-500 uppercase tracking-wide">Total Terkumpul</p>
                           <p className="!text-base md:text-lg font-bold text-[#379777]">
-                            Rp {donationData.reduce((sum, donation) => sum + donation.amount, 0).toLocaleString('id-ID')}
+                            Rp {formatCurrency(currentAmount)}
                           </p>
                         </div>
                       </div>

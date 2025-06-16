@@ -22,12 +22,53 @@ const DonationLineChart: React.FC = () => {
   // Fetch data from API
   const { data: chartResponse, isLoading, error } = useChartData();
 
-  // Color mapping for different programs
-  const programColors: { [key: string]: string } = {
-    'Zakat': '#10B981',
-    'Infaq': '#3B82F6',
-    'Wakaf': '#8B5CF6',
-    'Total': '#EF4444'
+  // Expanded color palette for dynamic assignment
+  const colorPalette = [
+    '#10B981', // Emerald
+    '#3B82F6', // Blue
+    '#8B5CF6', // Purple
+    '#F59E0B', // Amber
+    '#EF4444', // Red
+    '#06B6D4', // Cyan
+    '#84CC16', // Lime
+    '#F97316', // Orange
+    '#EC4899', // Pink
+    '#6366F1', // Indigo
+    '#14B8A6', // Teal
+    '#A855F7', // Violet
+    '#22C55E', // Green
+    '#F43F5E', // Rose
+    '#8B4513', // Brown
+    '#4B5563', // Gray
+    '#DC2626', // Red-600
+    '#7C3AED', // Violet-600
+    '#059669', // Emerald-600
+    '#D97706', // Amber-600
+    '#B91C1C', // Red-700
+    '#7C2D12', // Orange-800
+    '#166534', // Green-800
+    '#1E40AF', // Blue-700
+    '#7E22CE', // Purple-700
+  ];
+
+  // Function to generate color for a program
+  const generateProgramColor = (index: number): string => {
+    // Use index to get color from palette, cycle through if more programs than colors
+    return colorPalette[index % colorPalette.length];
+  };
+
+  // Function to generate color mapping for all programs
+  const generateProgramColors = (programs: string[]): { [key: string]: string } => {
+    const colorMap: { [key: string]: string } = {};
+    
+    programs.forEach((program, index) => {
+      colorMap[program] = generateProgramColor(index);
+    });
+    
+    // Special color for Total (always red and dashed)
+    colorMap['Total'] = '#EF4444';
+    
+    return colorMap;
   };
 
   // Handle loading state
@@ -77,6 +118,9 @@ const DonationLineChart: React.FC = () => {
 
   // Get unique programs from API data
   const programs = Array.from(new Set(rawData.map(item => item.program_donation)));
+  
+  // Generate dynamic color mapping
+  const programColors = generateProgramColors(programs);
 
   // Process data based on filters
   const processData = (): ProcessedData => {
@@ -146,14 +190,17 @@ const DonationLineChart: React.FC = () => {
         datasets.push({
           label: program,
           data: processedData[program],
-          borderColor: programColors[program] || '#6B7280',
-          backgroundColor: (programColors[program] || '#6B7280') + '20',
+          borderColor: programColors[program],
+          backgroundColor: programColors[program] + '20',
           tension: 0.4,
           fill: false,
+          borderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
         });
       });
 
-      // Add total line
+      // Add total line (always dashed and thicker)
       datasets.push({
         label: 'Total (Agregat)',
         data: processedData['Total'],
@@ -163,16 +210,21 @@ const DonationLineChart: React.FC = () => {
         fill: false,
         borderWidth: 3,
         borderDash: [5, 5],
+        pointRadius: 5,
+        pointHoverRadius: 7,
       });
     } else {
       // Show only selected program
       datasets.push({
         label: selectedProgram,
         data: processedData[selectedProgram],
-        borderColor: programColors[selectedProgram] || '#6B7280',
-        backgroundColor: (programColors[selectedProgram] || '#6B7280') + '20',
+        borderColor: programColors[selectedProgram],
+        backgroundColor: programColors[selectedProgram] + '20',
         tension: 0.4,
         fill: false,
+        borderWidth: 3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
       });
     }
 
@@ -186,6 +238,11 @@ const DonationLineChart: React.FC = () => {
     plugins: {
       legend: {
         position: 'top' as const,
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'circle',
+          padding: 20,
+        }
       },
       title: {
         display: true,

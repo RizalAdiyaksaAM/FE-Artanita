@@ -141,7 +141,7 @@ export default function DashboardDonatur() {
           </motion.div>
         </CardHeader>
         
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 h-full">
           {isLoading ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -159,7 +159,7 @@ export default function DashboardDonatur() {
               ))}
             </motion.div>
           ) : hasDonaturs ? (
-            <ScrollArea className="h-96 pr-4">
+            <ScrollArea className="h-130 pr-4">
               <div className="space-y-0">
                 {donaturs.data.map((donatur, index) => (
                   <DonaturItem 

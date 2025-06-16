@@ -12,32 +12,7 @@ export const SearchAndControls: React.FC<SearchAndControlsProps> = ({
   onClearSearch,
   onCreateNew
 }) => {
-  // const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (file) {
-  //     onImportCSV(file);
-  //   }
-  // };
-
-  // const downloadSampleCSV = () => {
-  //   const sampleData = [
-  //     'title,deskripsi,goal_amount,image_url',
-  //     'Sample Program 1,This is a sample donation program,1000000,https://example.com/image1.jpg',
-  //     'Sample Program 2,Another sample donation program,2000000,https://example.com/image2.jpg'
-  //   ].join('\n');
-
-  //   const blob = new Blob([sampleData], { type: 'text/csv' });
-  //   const url = window.URL.createObjectURL(blob);
-  //   const a = document.createElement('a');
-  //   a.href = url;
-  //   a.download = 'sample_program_donations.csv';
-  //   document.body.appendChild(a);
-  //   a.click();
-  //   document.body.removeChild(a);
-  //   window.URL.revokeObjectURL(url);
-  // };
+ 
 
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
