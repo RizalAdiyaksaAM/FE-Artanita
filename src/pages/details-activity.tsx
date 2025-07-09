@@ -3,10 +3,11 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, type JSX } from "react";
 import useActivityDetail from "@/api/orphanage-activity/get-by-id-activity";
-import { Calendar, MapPin, Image, Film, ArrowLeft } from "lucide-react";
+import { Calendar, MapPin, Image, Film, ArrowLeft, CircleDollarSign } from "lucide-react";
 import DonationForm from "@/components/form/donation";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { formatCurrency } from "@/utils/activity";
 
 // TypeScript interfaces
 interface ActivityImage {
@@ -22,6 +23,7 @@ interface Activity {
   location: string;
   time: string;
   description: string;
+  use_donation: number;
   activity_images?: ActivityImage[];
   activity_videos?: ActivityVideo[];
 }
@@ -313,6 +315,11 @@ export default function ActivityDetail(): JSX.Element {
                 <div className="flex items-center gap-2">
                   <Calendar className="h-6 w-6 text-[#F4CE14]" />
                   <span className="font-semibold text-sm">{activity.time}</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <CircleDollarSign className="h-6 w-6 text-[#F4CE14]" />
+                  <span className="font-semibold text-sm">{formatCurrency(activity.use_donation)}</span>
                 </div>
               </motion.div>
               

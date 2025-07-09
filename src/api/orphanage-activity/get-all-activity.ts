@@ -15,6 +15,7 @@ export interface Activity {
   description: string;
   location: string;
   time: string;
+  use_donation: number;
   activity_images: ActivityImage[];
   activity_videos: ActivityVideo[];
 }

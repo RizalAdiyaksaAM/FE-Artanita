@@ -44,9 +44,9 @@ export default function LandingProgram() {
     // Jika ada data dari API, gunakan data tersebut
     if (dashboardData?.status === 'success' && dashboardData?.data) {
       setDashboard({
-        program_count: dashboardData.data.program_count || 0,
-        total_donation: dashboardData.data.total_donation || 0,
-        unique_donators_count: dashboardData.data.unique_donators_count || 0
+        program_count: dashboardData.data.used_donation || 0,
+        total_donation: dashboardData.data.total_donation|| 0,
+        unique_donators_count: dashboardData.data.remaining_donation || 0
       });
     }
     // Jika tidak ada data atau data kosong, tetap gunakan nilai default (0)
@@ -106,7 +106,7 @@ export default function LandingProgram() {
             </div>
           ) : (
             <Dashboard
-              program_count={program_count}
+              use_donation={program_count}
               total_donation={total_donation}
               unique_donators_count={unique_donators_count}
             />

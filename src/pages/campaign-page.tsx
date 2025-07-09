@@ -79,9 +79,9 @@ export default function CampaignPage() {
     // Akses data dengan struktur yang sesuai berdasarkan console log
     if (dashboardData?.status === "success" && dashboardData?.data) {
       setDashboard({
-        program_count: dashboardData.data.program_count,
+        program_count: dashboardData.data.used_donation,
         total_donation: dashboardData.data.total_donation,
-        unique_donators_count: dashboardData.data.unique_donators_count,
+        unique_donators_count: dashboardData.data.remaining_donation,
       });
     }
   }, [dashboardData]);
@@ -315,7 +315,7 @@ export default function CampaignPage() {
         >
           <motion.div variants={itemVariants}>
             <Dashboard
-              program_count={program_count}
+              use_donation={program_count}
               total_donation={total_donation}
               unique_donators_count={unique_donators_count}
             />

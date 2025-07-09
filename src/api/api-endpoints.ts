@@ -6,6 +6,7 @@ const API_ENDPOINTS = {
     CREATE_PROGRAM_DONATION: "/api/v1/program-donations",
 
     DASHBOARD: "/api/v1/dashboard-donations",
+    SUMMARY: "/api/v1/donations-summary",
     DONATUR: "/api/v1/donations-user",
     CHART_DATA: "/api/v1/donations-chart",
     NOTIFIKASI: "/api/v1/donations-notifikasi",
@@ -28,6 +29,7 @@ const API_ENDPOINTS = {
     GET_DONATION_BY_ID: (id: string) => `/api/v1/program-donations/${id}`, // Perbaikan di sini
     GET_DONATION_BY_PROGRAM_ID: (id: string) => `/api/v1/donations-program/${id}`,
     GET_NOTIFIKASI_BY_ID: (id: string) => `/api/v1/donations-notifikasi-id/${id}`,
+    GET_DONASI_TERPAKAI: "/api/v1/activities-summary",
 
     LOGIN: "/api/v1/admin/login",
 };
